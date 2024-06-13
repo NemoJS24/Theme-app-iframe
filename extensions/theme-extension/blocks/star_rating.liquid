@@ -1,0 +1,35 @@
+{% comment %}
+  {% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
+  <span style="color:{{ block.settings.colour }}">
+    {% render 'stars', rating: avg_rating %}
+  </span>
+  {% if avg_rating >= 4 %}
+    <br>
+    <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
+    {{ 'ratings.home.recommendationText' | t }}
+  {% endif %}
+{% endcomment %}
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe
+    seamless
+    src="https://www.wikipedia.org/"
+    title="Wikipedia"
+    loading="lazy"
+    sandbox="allow-same-origin"
+    allow="fullscreen"
+    style="position: absolute; top: 0; left: 0; width: 50%; height: 50%; border: none;"
+  >
+    <p>Your browser does not support iframes.</p>
+  </iframe>
+</div>
+
+{% schema %}
+{
+  "name": "Star Rating",
+  "target": "body",
+  "settings": [
+    { "type": "product", "id": "product", "label": "product", "autofill": true },
+    { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
+  ]
+}
+{% endschema %}
